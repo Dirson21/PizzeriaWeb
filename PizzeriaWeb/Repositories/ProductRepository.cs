@@ -25,7 +25,7 @@ namespace SQLHomeWork.Repositories
             {
                 connection.Open();
                 using SqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO [CustomerAccount] (Name, Price) VALUES (@name, @price)";
+                command.CommandText = "INSERT INTO [Product] (Name, Price) VALUES (@name, @price)";
                 command.Parameters.Add("@name", SqlDbType.NVarChar, 20).Value = product.Name;
                 command.Parameters.Add("@price", SqlDbType.Decimal).Value = product.Price;
 

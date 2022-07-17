@@ -1,0 +1,44 @@
+<mat-card>
+
+    <mat-nav-list  class="list-horizontal">
+        <mat-list-item class="nav-item"><a routerLink=""><h3>Customer</h3></a></mat-list-item>
+        <mat-list-item class="nav-item"><a routerLink="/product"><h3>Product</h3></a></mat-list-item>
+        
+    </mat-nav-list>
+
+
+
+    <mat-card-content>
+        <h3>Товары</h3>
+        <app-product-table [dataSource]="products"  (delete)="deleteProduct($event)" ></app-product-table>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <form [formGroup]="form">
+            <mat-list>
+                <mat-list-item>
+                <mat-form-field class="example-form-field" appearance="fill">
+                    <input formControlName="id"  value="0" matInput type="number" min="0" placeholder="id">
+                </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                <mat-form-field class="example-form-field" appearance="fill">
+                    <input formControlName="name"  matInput maxlength="20" placeholder="name">
+                </mat-form-field>
+                </mat-list-item>
+            <mat-list-item>
+                <mat-form-field class="example-form-field" appearance="fill">
+                    <input formControlName="price" matInput type="number" placeholder="Balance">
+                </mat-form-field>
+            </mat-list-item>
+            </mat-list>
+        </form>
+        <button mat-flat-button color="primary"(click)="addProductItem()" >Добавить</button>
+        <button mat-flat-button color="primary"(click)="updateProductItem()" >Обновить</button>
+    </mat-card-actions>
+    
+    
+
+
+</mat-card>
+

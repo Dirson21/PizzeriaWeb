@@ -4,6 +4,7 @@ import { CustomerAccountService } from '../shared/customer-account.service';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from '../shared/product.interface';
 import { ProductService } from '../shared/product.service';
+import { fromEventPattern } from 'rxjs';
 
 @Component({
   selector: 'app-pizzeria-web-page',
@@ -26,8 +27,10 @@ export class PizzeriaWebPageComponent implements OnInit {
     this.form = new FormGroup({
       login: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
-      balance: new FormControl(null, [Validators.required])
+      balance: new FormControl(null, [Validators.required]),
+      id: new FormControl(null, [Validators.required])
   });
+    this.form.controls["id"].setValue(0);
 
   }
 
@@ -48,6 +51,7 @@ export class PizzeriaWebPageComponent implements OnInit {
     {
       return;
     } 
+    
 
     this.customerAccountService.addCustomerAccount({
       id: 0,
@@ -61,15 +65,22 @@ export class PizzeriaWebPageComponent implements OnInit {
    
   }
 
-  public getProducts(): void {
-    this.productService.getProducts().subscribe(s=> 
-      {this.products = Object.assign([], s)});
-  }
 
-  public deleteProduct(product:IProduct): void {
-    this.productService.deleteProduct(product.id).subscribe(() => {
-      this.getProducts();
+  public updateCustomerAccountItem(): void {
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.customerAccountService.updateCustomerAccount({
+      id: this.idControl.value,
+      login: this.loginControl.value,
+      password: this.passwordControl.value,
+      balance: this.balanceControl.value
+    }).subscribe(()=> {
+      this.getCustomersAccounts();
+      this.form.markAsUntouched()
     })
+
   }
 
 
@@ -85,6 +96,9 @@ export class PizzeriaWebPageComponent implements OnInit {
   get balanceControl(): AbstractControl{
 
     return this.form.get("balance")!;
+  }
+  get idControl(): AbstractControl {
+    return this.form.get("id")!;
   }
 
 }

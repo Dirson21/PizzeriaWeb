@@ -19,15 +19,19 @@ import {MatTableModule } from "@angular/material/table";
 import { CustomerAccountTableComponent } from './customer-account-table/customer-account-table.component'
 import { ProductService } from './shared/product.service';
 import { ProductTableComponent } from './product-table/product-table.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ProductPageComponent } from './product-page/product-page.component';
 
 
 @NgModule({
   declarations: [
     PizzeriaWebPageComponent,
     CustomerAccountTableComponent,
-    ProductTableComponent
+    ProductTableComponent,
+    ProductPageComponent
   ],
   imports: [
+    MatToolbarModule,
     CommonModule,
     PizzeriaWebRoutingModule,
     MatCardModule,
