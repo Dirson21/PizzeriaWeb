@@ -46,7 +46,7 @@ namespace PizzeriaWeb.Controllers
         }
 
         [HttpGet]
-        [Route("login")]
+        [Route("search")]
         public IActionResult GetCustomerAccountByLogin([FromQuery] string login)
         {
             try
@@ -62,7 +62,7 @@ namespace PizzeriaWeb.Controllers
 
 
        [HttpGet]
-        [Route ("orders")]
+       [Route ("orders")]
         public IActionResult GetTotalPriceOrders()
         {
             try
@@ -94,7 +94,6 @@ namespace PizzeriaWeb.Controllers
         {
             try
             {
-              
                 return Ok(_customerAccountService.UpdateCustomerAccount(customerAccountDto));
             }
             catch (Exception ex)
