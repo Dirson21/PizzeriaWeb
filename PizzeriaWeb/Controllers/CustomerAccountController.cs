@@ -59,6 +59,19 @@ namespace PizzeriaWeb.Controllers
         
         }
 
+        [HttpGet]
+        [Route ("orders")]
+        public IActionResult GetTotalPriceOrders()
+        {
+            try
+            {
+                return Ok(_customerAccountService.GetTotalPriceOrders());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpPost]
         public IActionResult CreateCustomerAccount([FromBody] CustomerAccountDto customerAccount)
@@ -87,5 +100,21 @@ namespace PizzeriaWeb.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete]
+        [Route("{customerAccountId}")]
+        public IActionResult DeleteCustomerAccount(int customerAccountId)
+        {
+            try
+            {
+                _customerAccountService.DeleteCustomerAccount(customerAccountId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

@@ -126,6 +126,7 @@ namespace SQLHomeWork.Repositories
         public List<Tuple<CustomerAccount, decimal>> GetAllTotalPrice()
         {
             var result = new List<Tuple<CustomerAccount, decimal>>();
+            
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
@@ -140,6 +141,7 @@ namespace SQLHomeWork.Repositories
                                                                Convert.ToString(reader["Password"]), Convert.ToInt32(reader["Balance"]));
                 result.Add(new Tuple<CustomerAccount, decimal>(customer, Convert.ToDecimal(reader["TotalPrice"])));
             }
+
             return result;
 
 
