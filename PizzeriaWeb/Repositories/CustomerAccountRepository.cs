@@ -94,7 +94,7 @@ namespace SQLHomeWork.Repositories
             }
         }
 
-        public void Update(CustomerAccount customerAccount)
+        public int Update(CustomerAccount customerAccount)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
@@ -105,7 +105,7 @@ namespace SQLHomeWork.Repositories
             sqlCommand.Parameters.Add("@password", SqlDbType.NVarChar, 20).Value = customerAccount.Password;
             sqlCommand.Parameters.Add("@balance", SqlDbType.Int).Value = customerAccount.Balance;
             sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = customerAccount.Id;
-            sqlCommand.ExecuteNonQuery();
+            return Convert.ToInt32(sqlCommand.ExecuteScalar());
             
 
         }
@@ -151,7 +151,7 @@ namespace SQLHomeWork.Repositories
             {
                 connection.Open();
                 using SqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO [CustomerAccount] (Login, Password, Balance) VALUES (@login, @password, @balance";
+                command.CommandText = "INSERT INTO [CustomerAccount] (Login, Password, Balance) VALUES (@login, @password, @balance)";
                 command.Parameters.Add("@login", SqlDbType.NVarChar, 20).Value = customerAccount.Login;
                 command.Parameters.Add("@password", SqlDbType.NVarChar, 20).Value = customerAccount.Password;
                 command.Parameters.Add("@balance", SqlDbType.Decimal).Value = customerAccount.Balance;

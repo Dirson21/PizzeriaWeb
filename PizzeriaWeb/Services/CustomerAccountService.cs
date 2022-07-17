@@ -17,9 +17,9 @@ namespace PizzeriaWeb.Services
         {
             if (customerAccount == null)
             {
-                new Exception($"{nameof(customerAccount)} is not found.");
+                throw new Exception($"{nameof(customerAccount)} is not found.");
             }
-            return _customerAccountRepository.Create(customerAccount.ConverToCustomerAccount());
+            return _customerAccountRepository.Create(customerAccount.ConvertToCustomerAccount());
            
         }
 
@@ -30,7 +30,23 @@ namespace PizzeriaWeb.Services
 
         public CustomerAccount GetCustomerAccount(int id)
         {
-            throw new NotImplementedException();
+            CustomerAccount customerAccount = _customerAccountRepository.GetById(id);
+            if (customerAccount == null)
+            {
+                throw new Exception($"{nameof(customerAccount)} is not found.");
+            }
+            return customerAccount;
+            
+        }
+
+        public CustomerAccount GetCustomerAccountByLogin(string login)
+        {
+            CustomerAccount customerAccount = _customerAccountRepository.GetByLogin(login);
+            if (customerAccount == null)
+            {
+                throw new Exception($"{nameof(customerAccount)} is not found.");
+            }
+            return customerAccount;
         }
 
         public List<CustomerAccount> GetCustomerAccounts()
@@ -39,9 +55,13 @@ namespace PizzeriaWeb.Services
             
         }
 
-        public void UpdateCustomerAccount(CustomerAccountDto customerAccount)
+        public int UpdateCustomerAccount(CustomerAccountDto customerAccount)
         {
-            throw new NotImplementedException();
+            if (customerAccount == null)
+            {
+                throw new Exception($"{nameof(customerAccount)} is not found.");
+            }
+            return _customerAccountRepository.Update(customerAccount.ConvertToCustomerAccount());
         }
     }
 }

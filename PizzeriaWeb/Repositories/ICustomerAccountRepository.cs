@@ -7,7 +7,7 @@ namespace SQLHomeWork.Repositories
         List<CustomerAccount> GetAll();
         CustomerAccount GetByLogin(string login);
         CustomerAccount GetById(int id);
-        void Update(CustomerAccount customerAccount);
+        int Update(CustomerAccount customerAccount);
         void Delete(CustomerAccount customerAccount);
 
         int Create(CustomerAccount customerAccount);

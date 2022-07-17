@@ -7,9 +7,10 @@ namespace PizzeriaWeb.Services
     {
         List<CustomerAccount> GetCustomerAccounts();
         CustomerAccount GetCustomerAccount(int id);
+        CustomerAccount GetCustomerAccountByLogin(string login);
         int CreateCustomerAccount(CustomerAccountDto customerAccount);
         void DeleteCustomerAccount(int customerAccountId);
-        void UpdateCustomerAccount(CustomerAccountDto customerAccount);
+        int UpdateCustomerAccount(CustomerAccountDto customerAccount);
 
 
     }
