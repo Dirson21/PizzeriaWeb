@@ -1,14 +1,13 @@
-﻿
-namespace SQLHomeWork.Models
+﻿namespace PizzeriaWeb.Dto
 {
-    public class CustomerAccount
+    public class CustomerAccountDto
     {
-        public int Id { get; set; }
+        public int Id { get;  set; }
         public string Login { get; set; }
-        public string Password { get; set; }
-        public decimal Balance { get; set; }
+        public string Password { get;  set; }
+        public decimal Balance { get;  set; }
 
-        public CustomerAccount(int id, string login, string password, decimal balance)
+        public CustomerAccountDto(int id, string login, string password, decimal balance)
         {
             if (string.IsNullOrEmpty(login))
             {
@@ -58,7 +57,7 @@ namespace SQLHomeWork.Models
             {
                 throw new ArgumentOutOfRangeException($"\"{nameof(balance)}\" не может быть меньше нуля.", nameof(balance));
             }
-        
+
             Balance = balance;
         }
 

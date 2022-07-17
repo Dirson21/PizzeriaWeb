@@ -1,14 +1,14 @@
-﻿using SQLHomeWork.Models;
+﻿using SQLHomeWork.Domain;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace SQLHomeWork.Repositories
 {
-    public class RawSqlCustomerAccountRepository : ICustomerAccountRepository
+    public class CustomerAccountRepository : ICustomerAccountRepository
     {
         private readonly string _connectionString;
 
-        public RawSqlCustomerAccountRepository(string connectionString)
+        public CustomerAccountRepository(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
             {
@@ -18,7 +18,7 @@ namespace SQLHomeWork.Repositories
             _connectionString = connectionString;
         }
 
-        public IReadOnlyList<CustomerAccount> GetAll()
+        public List<CustomerAccount> GetAll()
         {
             var result = new List<CustomerAccount>();
 
@@ -123,7 +123,7 @@ namespace SQLHomeWork.Repositories
             
         }
 
-        public IReadOnlyList<Tuple<CustomerAccount, decimal>> GetAllTotalPrice()
+        public List<Tuple<CustomerAccount, decimal>> GetAllTotalPrice()
         {
             var result = new List<Tuple<CustomerAccount, decimal>>();
             using var connection = new SqlConnection(_connectionString);
@@ -143,6 +143,21 @@ namespace SQLHomeWork.Repositories
             return result;
 
 
+        }
+
+        public int Create(CustomerAccount customerAccount)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using SqlCommand command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO [CustomerAccount] (Login, Password, Balance) VALUES (@login, @password, @balance";
+                command.Parameters.Add("@login", SqlDbType.NVarChar, 20).Value = customerAccount.Login;
+                command.Parameters.Add("@password", SqlDbType.NVarChar, 20).Value = customerAccount.Password;
+                command.Parameters.Add("@balance", SqlDbType.Decimal).Value = customerAccount.Balance;
+
+                return Convert.ToInt32(command.ExecuteScalar());
+            }
         }
     }
 }

@@ -1,16 +1,18 @@
-﻿using SQLHomeWork.Models;
+﻿using SQLHomeWork.Domain;
 
 namespace SQLHomeWork.Repositories
 {
-    interface ICustomerAccountRepository
+    public interface ICustomerAccountRepository
     {
-        IReadOnlyList<CustomerAccount> GetAll();
+        List<CustomerAccount> GetAll();
         CustomerAccount GetByLogin(string login);
         CustomerAccount GetById(int id);
         void Update(CustomerAccount customerAccount);
         void Delete(CustomerAccount customerAccount);
 
-        IReadOnlyList<Tuple<CustomerAccount, decimal>> GetAllTotalPrice();
+        int Create(CustomerAccount customerAccount);
+
+        List<Tuple<CustomerAccount, decimal>> GetAllTotalPrice();
 
 
 

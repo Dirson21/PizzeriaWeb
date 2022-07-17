@@ -1,5 +1,5 @@
 ﻿
-namespace SQLHomeWork.Models
+namespace SQLHomeWork.Domain
 {
     public class Product
     {
