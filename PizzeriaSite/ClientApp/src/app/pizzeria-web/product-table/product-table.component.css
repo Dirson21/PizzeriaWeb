@@ -1,0 +1,15 @@
+
+
+.mat-column-id
+{
+    
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+}
+
+.mat-column-name, .mat-column-price, .mat-column-delete {
+    padding-left: 16px;
+    border-right: 1px solid currentColor;
+  }

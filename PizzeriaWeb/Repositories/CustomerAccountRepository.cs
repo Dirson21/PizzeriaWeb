@@ -26,7 +26,7 @@ namespace SQLHomeWork.Repositories
             connection.Open();
 
             using SqlCommand sqlCommand = connection.CreateCommand();
-            sqlCommand.CommandText = "SELECT [Id], [Login], [Password], [Balance] FROM [CustomerAccount]";
+            sqlCommand.CommandText = "SELECT * FROM [CustomerAccount]";
 
             using SqlDataReader reader = sqlCommand.ExecuteReader();
 
@@ -100,7 +100,7 @@ namespace SQLHomeWork.Repositories
             sqlCommand.CommandText = "UPDATE [CustomerAccount] SET [Login] = @login, [Password] = @password, [Balance] = @balance WHERE [Id] = @id";
             sqlCommand.Parameters.Add("@login", SqlDbType.NVarChar, 20).Value = customerAccount.Login;
             sqlCommand.Parameters.Add("@password", SqlDbType.NVarChar, 20).Value = customerAccount.Password;
-            sqlCommand.Parameters.Add("@balance", SqlDbType.Int).Value = customerAccount.Balance;
+            sqlCommand.Parameters.Add("@balance", SqlDbType.Decimal).Value = customerAccount.Balance;
             sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = customerAccount.Id;
             return Convert.ToInt32(sqlCommand.ExecuteScalar());
         }

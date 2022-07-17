@@ -19,9 +19,54 @@ namespace SQLHomeWork.Repositories
 
         }
 
-        public void Delete(Product newProduct)
+        public int Create(Product product)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using SqlCommand command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO [CustomerAccount] (Name, Price) VALUES (@name, @price)";
+                command.Parameters.Add("@name", SqlDbType.NVarChar, 20).Value = product.Name;
+                command.Parameters.Add("@price", SqlDbType.Decimal).Value = product.Price;
+
+                return Convert.ToInt32(command.ExecuteScalar());
+            }
+        }
+
+        public void Delete(Product product)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using SqlCommand command = connection.CreateCommand();
+                command.CommandText = "DELETE [Product] WHERE [Id] = @id";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = product.Id;
+                command.ExecuteNonQuery();
+            }
+            
+        }
+
+        public List<Product> GetAll()
+        {
+            var result = new List<Product>();
+
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            using SqlCommand sqlCommand = connection.CreateCommand();
+            sqlCommand.CommandText = "SELECT * FROM [Product]";
+
+            using SqlDataReader reader = sqlCommand.ExecuteReader();
+
+            while (reader.Read())
+            {
+                result.Add(new Product(Convert.ToInt32(reader["Id"]),
+                                                Convert.ToString(reader["Name"]),
+                                                Convert.ToDecimal(reader["Price"]))
+               );
+            }
+            return result;
+           
         }
 
         public Product GetById(int id)
@@ -73,9 +118,17 @@ namespace SQLHomeWork.Repositories
 
         }
 
-        public void Update(Product newProduct)
+        public int Update(Product product)
         {
-            throw new NotImplementedException();
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            SqlCommand sqlCommand = connection.CreateCommand();
+            sqlCommand.CommandText = "UPDATE [Product] SET [Name] = @name, [Price] = @price WHERE [Id] = @id";
+            sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar, 20).Value = product.Name;
+            sqlCommand.Parameters.Add("@price", SqlDbType.Decimal).Value = product.Price;
+            sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = product.Id;
+            return Convert.ToInt32(sqlCommand.ExecuteScalar());
         }
     }
 }

@@ -2,13 +2,16 @@
 
 namespace SQLHomeWork.Repositories
 {
-    interface IProductRepository
+    public interface IProductRepository
     {
         Product GetByName(string name);
 
         Product GetById(int id);
+        List<Product> GetAll();
 
-        void Update(Product newProduct);
+        int Create(Product product);
+
+        int Update(Product newProduct);
         void Delete(Product newProduct);
     }
 }
