@@ -39,9 +39,6 @@ namespace SQLHomeWork.Repositories
                );
             }
             return result;
-
-            
-
         }
 
         public CustomerAccount GetById(int id)
@@ -50,7 +47,7 @@ namespace SQLHomeWork.Repositories
             connection.Open();
 
             SqlCommand sqlCommand = connection.CreateCommand();
-            sqlCommand.CommandText = "SELECT [Id], [Login], [Password], [Balance] FROM [CustomerAccount] WHERE [Id] = @id";
+            sqlCommand.CommandText = "SELECT * FROM [CustomerAccount] WHERE [Id] = @id";
             sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
             using SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -106,8 +103,6 @@ namespace SQLHomeWork.Repositories
             sqlCommand.Parameters.Add("@balance", SqlDbType.Int).Value = customerAccount.Balance;
             sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = customerAccount.Id;
             return Convert.ToInt32(sqlCommand.ExecuteScalar());
-            
-
         }
 
         public void Delete(CustomerAccount customerAccount)
@@ -118,9 +113,7 @@ namespace SQLHomeWork.Repositories
             SqlCommand sqlCommand = connection.CreateCommand();
             sqlCommand.CommandText = "DELETE [CustomerAccount] WHERE [Id] = @id";
             sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = customerAccount.Id;
-            sqlCommand.ExecuteNonQuery();
-
-            
+            sqlCommand.ExecuteNonQuery();          
         }
 
         public List<Tuple<CustomerAccount, decimal>> GetAllTotalPrice()
@@ -143,7 +136,6 @@ namespace SQLHomeWork.Repositories
             }
 
             return result;
-
 
         }
 

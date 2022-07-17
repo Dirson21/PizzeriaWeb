@@ -2,6 +2,7 @@
 using PizzeriaWeb.Dto;
 using PizzeriaWeb.Services;
 
+
 namespace PizzeriaWeb.Controllers
 {
     [ApiController]
@@ -45,21 +46,22 @@ namespace PizzeriaWeb.Controllers
         }
 
         [HttpGet]
-        [Route("login/{customerAccountLogin}")]
-        public IActionResult GetCustomerAccountByLogin(string customerAccountLogin)
+        [Route("login")]
+        public IActionResult GetCustomerAccountByLogin([FromQuery] string login)
         {
             try
             {
-                return Ok(_customerAccountService.GetCustomerAccountByLogin(customerAccountLogin));
+                return Ok(_customerAccountService.GetCustomerAccountByLogin(login));
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-        
         }
+        
 
-        [HttpGet]
+
+       [HttpGet]
         [Route ("orders")]
         public IActionResult GetTotalPriceOrders()
         {
@@ -88,12 +90,12 @@ namespace PizzeriaWeb.Controllers
 
         [HttpPut]
         [Route("{customerAccountId}")]
-        public IActionResult UpdateCustomerAccount(int customerAccountId, [FromBody] CustomerAccountDto customerAccount)
+        public IActionResult UpdateCustomerAccount([FromBody] CustomerAccountDto customerAccountDto)
         {
             try
             {
-                customerAccount.Id = customerAccountId;
-                return Ok(_customerAccountService.UpdateCustomerAccount(customerAccount));
+              
+                return Ok(_customerAccountService.UpdateCustomerAccount(customerAccountDto));
             }
             catch (Exception ex)
             {

@@ -46,6 +46,11 @@ namespace PizzeriaWeb.Services
 
         public CustomerAccountDto GetCustomerAccountByLogin(string login)
         {
+            if (string.IsNullOrEmpty(login))
+            {
+                throw new ArgumentException($"\"{nameof(login)}\" не может быть неопределенным или пустым.", nameof(login));
+            }
+
             CustomerAccount customerAccount = _customerAccountRepository.GetByLogin(login);
             if (customerAccount == null)
             {
