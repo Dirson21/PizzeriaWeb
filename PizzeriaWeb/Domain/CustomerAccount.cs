@@ -1,14 +1,17 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace SQLHomeWork.Domain
 {
     public class CustomerAccount
     {
-        public int Id { get; private set; }
-        public string Login { get; private set; }
-        public string Password { get; private set; }
-        public decimal Balance { get; private set; }
+        
+        public int Id { get;  set; }
+        public string Login { get; set; }
+        public string Password { get;  set; }
+        public decimal Balance { get;  set; }
 
-        public CustomerAccount(int id, string login, string password, decimal balance)
+      /*  public CustomerAccount(int id, string login, string password, decimal balance)
         {
             if (string.IsNullOrEmpty(login))
             {
@@ -32,7 +35,7 @@ namespace SQLHomeWork.Domain
             Login = login;
             Password = password;
             Balance = balance;
-        }
+        }*/
 
         public void UpdateLogin(string email)
         {

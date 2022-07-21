@@ -32,10 +32,13 @@ namespace SQLHomeWork.Repositories
 
             while (reader.Read())
             {
-                result.Add(new CustomerAccount(Convert.ToInt32(reader["Id"]),
-                                                Convert.ToString(reader["Login"]),
-                                                Convert.ToString(reader["Password"]),
-                                                Convert.ToDecimal(reader["Balance"]))
+                result.Add(new CustomerAccount
+                {
+                    Id = Convert.ToInt32(reader["Id"]),
+                    Login = Convert.ToString(reader["Login"]),
+                    Password = Convert.ToString(reader["Password"]),
+                    Balance = Convert.ToDecimal(reader["Balance"])
+                }
                );
             }
             return result;
@@ -53,12 +56,13 @@ namespace SQLHomeWork.Repositories
             using SqlDataReader reader = sqlCommand.ExecuteReader();
             if (reader.Read())
             {
-                return new CustomerAccount(
-                    Convert.ToInt32(reader["Id"]),
-                    Convert.ToString(reader["Login"]),
-                    Convert.ToString(reader["Password"]),
-                    Convert.ToDecimal(reader["Balance"])
-                    );
+                return new CustomerAccount
+                {
+                    Id = Convert.ToInt32(reader["Id"]),
+                    Login = Convert.ToString(reader["Login"]),
+                    Password = Convert.ToString(reader["Password"]),
+                    Balance = Convert.ToDecimal(reader["Balance"])
+                };
             }
             else
             {
@@ -78,12 +82,13 @@ namespace SQLHomeWork.Repositories
             using SqlDataReader reader = sqlCommand.ExecuteReader();
             if (reader.Read())
             {
-                return new CustomerAccount(
-                    Convert.ToInt32(reader["Id"]),
-                    Convert.ToString(reader["Login"]),
-                    Convert.ToString(reader["Password"]),
-                    Convert.ToDecimal(reader["Balance"])
-                    );
+                return new CustomerAccount
+                {
+                    Id = Convert.ToInt32(reader["Id"]),
+                    Login = Convert.ToString(reader["Login"]),
+                    Password = Convert.ToString(reader["Password"]),
+                    Balance = Convert.ToDecimal(reader["Balance"])
+                };
             }
             else
             {
@@ -130,8 +135,13 @@ namespace SQLHomeWork.Repositories
             SqlDataReader reader = sqlCommand.ExecuteReader();
             while(reader.Read())
             {
-                CustomerAccount customer = new CustomerAccount(Convert.ToInt32(reader["Id"]), Convert.ToString(reader["Login"]),
-                                                               Convert.ToString(reader["Password"]), Convert.ToInt32(reader["Balance"]));
+                CustomerAccount customer = new CustomerAccount
+                {
+                    Id = Convert.ToInt32(reader["Id"]),
+                    Login = Convert.ToString(reader["Login"]),
+                    Password = Convert.ToString(reader["Password"]),
+                    Balance = Convert.ToDecimal(reader["Balance"])
+                };
                 result.Add(new Tuple<CustomerAccount, decimal>(customer, Convert.ToDecimal(reader["TotalPrice"])));
             }
 

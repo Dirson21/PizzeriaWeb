@@ -1,16 +1,19 @@
 ﻿using PizzeriaWeb.Dto;
+using PizzeriaWeb.Infrastructure.UoW;
 using SQLHomeWork.Domain;
-using SQLHomeWork.Repositories;
+using PizzeriaWeb.Infrastructure.Data.CustomerAccountModel;
 
 namespace PizzeriaWeb.Services
 {
     public class CustomerAccountService : ICustomerAccountService
     {
         private readonly ICustomerAccountRepository _customerAccountRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CustomerAccountService(ICustomerAccountRepository customerAccountRepository)
+        public CustomerAccountService(ICustomerAccountRepository customerAccountRepository, IUnitOfWork unitOfWork)
         {
             _customerAccountRepository = customerAccountRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public int CreateCustomerAccount(CustomerAccountDto customerAccount)
@@ -19,7 +22,10 @@ namespace PizzeriaWeb.Services
             {
                 throw new Exception($"{nameof(customerAccount)} is not found.");
             }
-            return _customerAccountRepository.Create(customerAccount.ConvertToCustomerAccount());
+            
+            int id = _customerAccountRepository.Create(customerAccount.ConvertToCustomerAccount());
+            _unitOfWork.SaveEntitiesAsync();
+            return id;
            
         }
 
@@ -31,6 +37,8 @@ namespace PizzeriaWeb.Services
                 throw new Exception($"{nameof(customerAccount)} is not found.");
             }  
             _customerAccountRepository.Delete(customerAccount);
+            _unitOfWork.SaveEntitiesAsync();
+
         }
 
         public CustomerAccountDto GetCustomerAccount(int id)
@@ -61,15 +69,17 @@ namespace PizzeriaWeb.Services
 
         public List<CustomerAccountDto> GetCustomerAccounts()
         {
+
             return _customerAccountRepository.GetAll().ConvertAll(s => s.ConvertToCustomerAccountDto());
             
         }
 
         public List<Tuple<CustomerAccountDto, decimal>> GetTotalPriceOrders()
         {
+            throw new NotImplementedException();
 
-            return _customerAccountRepository.GetAllTotalPrice().ConvertAll(s =>
-                new Tuple<CustomerAccountDto, decimal>(s.Item1.ConvertToCustomerAccountDto(), s.Item2));
+            /*return _customerAccountRepository.GetAllTotalPrice().ConvertAll(s =>
+                new Tuple<CustomerAccountDto, decimal>(s.Item1.ConvertToCustomerAccountDto(), s.Item2));*/
         }
 
         public int UpdateCustomerAccount(CustomerAccountDto customerAccount)
@@ -78,7 +88,9 @@ namespace PizzeriaWeb.Services
             {
                 throw new Exception($"{nameof(customerAccount)} is not found.");
             }
-            return _customerAccountRepository.Update(customerAccount.ConvertToCustomerAccount());
+            int id = _customerAccountRepository.Update(customerAccount.ConvertToCustomerAccount());
+            _unitOfWork.SaveEntitiesAsync();
+            return id;
         }
     }
 }

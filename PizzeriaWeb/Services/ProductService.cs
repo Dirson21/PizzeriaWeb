@@ -1,16 +1,19 @@
 ﻿using PizzeriaWeb.Dto;
+using PizzeriaWeb.Infrastructure.Data.CustomerAccountModel;
+using PizzeriaWeb.Infrastructure.UoW;
 using SQLHomeWork.Domain;
-using SQLHomeWork.Repositories;
 
 namespace PizzeriaWeb.Services
 {
-    public class ProducService : IProductService
+    public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ProducService(IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
             _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
         public int CreateProduct(ProductDto productDto)
         {
@@ -18,7 +21,12 @@ namespace PizzeriaWeb.Services
             {
                 throw new Exception($"{nameof(productDto)} is not found.");
             }
-            return _productRepository.Create(productDto.ConvertToProduct());
+
+            int id = _productRepository.Create(productDto.ConvertToProduct());
+            _unitOfWork.SaveEntitiesAsync();
+            
+
+            return id;
      
         }
 
@@ -30,6 +38,7 @@ namespace PizzeriaWeb.Services
                 throw new Exception($"{nameof(product)} is not found.");
             }
             _productRepository.Delete(product);
+            _unitOfWork.SaveEntitiesAsync();
         }
 
         public ProductDto GetProduct(int productId)
@@ -68,7 +77,10 @@ namespace PizzeriaWeb.Services
             {
                 throw new Exception($"{nameof(product)} is not found.");
             }
-            return _productRepository.Update(product.ConvertToProduct());
+           
+            int id = _productRepository.Update(product.ConvertToProduct());
+            _unitOfWork.SaveEntitiesAsync();
+            return id;
         }
     }
 }

@@ -6,7 +6,14 @@ namespace PizzeriaWeb.Dto
     {
         public static CustomerAccount ConvertToCustomerAccount(this CustomerAccountDto customerDto)
         {
-            return new CustomerAccount(customerDto.Id, customerDto.Login, customerDto.Password, customerDto.Balance);
+            return new CustomerAccount
+            {
+                Id = customerDto.Id,
+                Login = customerDto.Login,
+                Password = customerDto.Password,
+                Balance = customerDto.Balance
+            };
+          
        
         }
         public static CustomerAccountDto ConvertToCustomerAccountDto(this CustomerAccount customer)

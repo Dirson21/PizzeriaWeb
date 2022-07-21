@@ -14,12 +14,11 @@ import { fromEventPattern } from 'rxjs';
 export class PizzeriaWebPageComponent implements OnInit {
 
   public customerAccounts: ICustomerAccount[] = [];
-  public products: IProduct[] = []
   public form!: FormGroup;
 
   constructor(private customerAccountService: CustomerAccountService, private productService: ProductService) {
     this.getCustomersAccounts() 
-    this.getProducts();
+
 
    }
 
