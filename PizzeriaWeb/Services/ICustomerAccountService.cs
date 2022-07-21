@@ -1,5 +1,5 @@
 ﻿using PizzeriaWeb.Dto;
-using SQLHomeWork.Domain;
+using PizzeriaWeb.Domain;
 
 namespace PizzeriaWeb.Services
 {

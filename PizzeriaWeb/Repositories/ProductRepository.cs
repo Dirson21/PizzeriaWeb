@@ -1,8 +1,8 @@
-﻿using SQLHomeWork.Domain;
+﻿using PizzeriaWeb.Domain;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace SQLHomeWork.Repositories
+namespace PizzeriaWeb.Repositories
 {
     public class ProductRepository : IProductRepository
     {

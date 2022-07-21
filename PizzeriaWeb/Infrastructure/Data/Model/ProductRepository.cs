@@ -1,10 +1,10 @@
-﻿using SQLHomeWork.Domain;
+﻿using PizzeriaWeb.Domain;
 
-namespace PizzeriaWeb.Infrastructure.Data.CustomerAccountModel
+namespace PizzeriaWeb.Infrastructure.Data.Model
 {
     public class ProductRepository : IProductRepository
     {
-        PizzeriaDbContext _dbContext;
+        private readonly PizzeriaDbContext _dbContext;
 
         public ProductRepository(PizzeriaDbContext dbContext)
         {
@@ -25,6 +25,8 @@ namespace PizzeriaWeb.Infrastructure.Data.CustomerAccountModel
 
         public List<Product> GetAll()
         {
+       
+
             return _dbContext.product.ToList();
         }
 

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PizzeriaWeb.Infrastructure.Data;
 using PizzeriaWeb.Services;
-using PizzeriaWeb.Infrastructure.Data.CustomerAccountModel;
+using PizzeriaWeb.Infrastructure.Data.Model;
 using PizzeriaWeb.Infrastructure.UoW;
 using Microsoft.EntityFrameworkCore.Design;
 

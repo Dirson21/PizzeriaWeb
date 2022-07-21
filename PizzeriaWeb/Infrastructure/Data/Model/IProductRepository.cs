@@ -1,6 +1,6 @@
-﻿using SQLHomeWork.Domain;
+﻿using PizzeriaWeb.Domain;
 
-namespace PizzeriaWeb.Infrastructure.Data.CustomerAccountModel
+namespace PizzeriaWeb.Infrastructure.Data.Model
 {
     public interface IProductRepository
     {

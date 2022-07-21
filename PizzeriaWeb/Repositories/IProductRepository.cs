@@ -1,6 +1,6 @@
-﻿using SQLHomeWork.Domain;
+﻿using PizzeriaWeb.Domain;
 
-namespace SQLHomeWork.Repositories
+namespace PizzeriaWeb.Repositories
 {
     public interface IProductRepository
     {

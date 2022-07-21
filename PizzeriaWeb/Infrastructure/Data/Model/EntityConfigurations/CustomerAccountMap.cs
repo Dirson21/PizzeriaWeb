@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SQLHomeWork.Domain;
+using PizzeriaWeb.Domain;
 
-namespace PizzeriaWeb.Infrastructure.Data.CustomerAccountModel.EntityConfigurations
+namespace PizzeriaWeb.Infrastructure.Data.Model.EntityConfigurations
 {
     public class CustomerAccountMap : IEntityTypeConfiguration<CustomerAccount>
     {
@@ -16,6 +16,8 @@ namespace PizzeriaWeb.Infrastructure.Data.CustomerAccountModel.EntityConfigurati
 
             builder.Property(x => x.Password);
             builder.Property(x => x.Balance);
+
+           
             
         }
     }

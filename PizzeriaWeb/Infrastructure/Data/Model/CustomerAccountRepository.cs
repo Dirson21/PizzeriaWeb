@@ -1,6 +1,8 @@
-﻿using SQLHomeWork.Domain;
+﻿using PizzeriaWeb.Domain;
+using Microsoft.EntityFrameworkCore;
 
-namespace PizzeriaWeb.Infrastructure.Data.CustomerAccountModel
+
+namespace PizzeriaWeb.Infrastructure.Data.Model
 {
     public class CustomerAccountRepository : ICustomerAccountRepository
     {
@@ -25,6 +27,7 @@ namespace PizzeriaWeb.Infrastructure.Data.CustomerAccountModel
 
         public List<CustomerAccount> GetAll()
         {
+          
             return _dbContext.customerAccount.ToList();
         }
 

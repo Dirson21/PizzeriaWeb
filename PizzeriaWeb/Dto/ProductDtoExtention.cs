@@ -1,4 +1,4 @@
-﻿using SQLHomeWork.Domain;
+﻿using PizzeriaWeb.Domain;
 
 namespace PizzeriaWeb.Dto
 {

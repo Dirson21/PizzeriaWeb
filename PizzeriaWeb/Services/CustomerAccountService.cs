@@ -1,7 +1,7 @@
 ﻿using PizzeriaWeb.Dto;
 using PizzeriaWeb.Infrastructure.UoW;
-using SQLHomeWork.Domain;
-using PizzeriaWeb.Infrastructure.Data.CustomerAccountModel;
+using PizzeriaWeb.Domain;
+using PizzeriaWeb.Infrastructure.Data.Model;
 
 namespace PizzeriaWeb.Services
 {

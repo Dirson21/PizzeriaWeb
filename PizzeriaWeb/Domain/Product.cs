@@ -1,11 +1,14 @@
 ﻿
-namespace SQLHomeWork.Domain
+namespace PizzeriaWeb.Domain
 {
     public class Product
     {
         public int Id { get; set; } 
         public string Name { get; set; }
         public decimal Price { get; set; }
+
+        public List<OrderProduct> Products => _products;
+        private List<OrderProduct> _products = new List<OrderProduct>();
 
         public Product(int id, string name, decimal price)
         {
