@@ -18,6 +18,10 @@ namespace PizzeriaWeb.Services
 
         public int CreateOrder(OrderDto order)
         {
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
             int id = _orderRepository.Create(order.ConvertToOrder());
             _unitOfWork.SaveEntitiesAsync();
             return id;

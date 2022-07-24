@@ -19,7 +19,7 @@ builder.Services.AddDbContext<PizzeriaDbContext>(c =>
     }
     catch(Exception)
     {
-
+        Console.WriteLine("Not Connection");
     }
     
 });

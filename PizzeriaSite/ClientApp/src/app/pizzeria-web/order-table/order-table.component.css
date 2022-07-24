@@ -1,9 +1,10 @@
-
-.mat-table td, th {
+/* 
+.mat-table  th {
     border-right: 1px solid black;
-}
+    text-align: center;
+}  */
 
-
+/* 
 .mat-column-customerId, .mat-column-orderId
 {
     width: 32px;
@@ -14,4 +15,23 @@
 .mat-column-login, .mat-column-delete {
     padding-left: 16px;
     padding-right: 16px;
+    border-right: 1px solid currentColor;
+    text-align: center;
+} */
+
+.mat-cell, .mat-header-cell {
+    border-right: 1px solid currentColor;
+    text-align: center;
+    padding-right: 24px;
+    border-bottom: 1px solid currentColor;
 }
+
+.mat-header-cell {
+    border-top: 1px solid currentColor;
+}
+
+.mat-column-login {
+    border-left: 1px solid currentColor;
+}
+
+

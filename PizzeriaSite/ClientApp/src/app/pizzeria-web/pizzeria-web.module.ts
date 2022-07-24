@@ -24,6 +24,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { OrderTableComponent } from './order-table/order-table.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { OrderSerive } from './shared/order.service';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { OrderSerive } from './shared/order.service';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ],
   providers: [
     CustomerAccountService,

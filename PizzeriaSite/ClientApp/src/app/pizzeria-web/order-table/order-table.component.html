@@ -1,39 +1,29 @@
 
 <table mat-table [dataSource]="dataSource" class="customerAccountsTable">
 
-    <ng-container matColumnDef="customerId">
-      <th mat-header-cell *matHeaderCellDef> customerId </th>
-      <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
-    </ng-container>
-  
 
     <ng-container matColumnDef="login">
-      <th mat-header-cell *matHeaderCellDef> Login </th>
+      <th mat-header-cell *matHeaderCellDef> Логин </th>
       <td mat-cell *matCellDef="let element"> {{element.customerAccountDto.login}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="orderId">
-        <th mat-header-cell *matHeaderCellDef> OrderId </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
-  
 
     <ng-container matColumnDef="orderDate">
-      <th mat-header-cell *matHeaderCellDef> OrderDate </th>
+      <th mat-header-cell *matHeaderCellDef> Время заказа </th>
       <td mat-cell *matCellDef="let element"> {{element.timeOrder}} </td>
     </ng-container>
 
     <ng-container matColumnDef="products">
-        <th mat-header-cell *matHeaderCellDef> Products</th>
+        <th mat-header-cell *matHeaderCellDef> Продукты</th>
         <td mat-cell *matCellDef="let element">
          <mat-list>
-            <mat-list-item *ngFor="let orderProduct of element.orderProductsDto">Id: {{orderProduct.product.id}} {{orderProduct.product.name}}</mat-list-item>
+            <mat-list-item *ngFor="let orderProduct of element.orderProductsDto">{{orderProduct.product.name}}</mat-list-item>
         </mat-list>
      </td>
       </ng-container>
 
     <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef>delete</th>
+        <th mat-header-cell *matHeaderCellDef>Удалить</th>
         <td mat-cell *matCellDef="let element"><button mat-button (click)="deleteClicked(element)">удалить</button></td>
     </ng-container>
   

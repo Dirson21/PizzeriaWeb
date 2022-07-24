@@ -15,7 +15,7 @@ export class OrderTableComponent implements OnInit {
 
   
 
-  public displayedColumns: string[] = ["customerId", "login", "orderId" ,"orderDate", "products", "delete"];
+  public displayedColumns: string[] = ["login","orderDate", "products", "delete"];
 
   public deleteClicked(item: IOrder) {
       this.delete.emit(item);

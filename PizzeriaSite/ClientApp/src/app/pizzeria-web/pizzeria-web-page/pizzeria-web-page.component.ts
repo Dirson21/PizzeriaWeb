@@ -3,6 +3,7 @@ import { ICustomerAccount } from '../shared/customer-account.interface';
 import { CustomerAccountService } from '../shared/customer-account.service';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../shared/product.service';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-pizzeria-web-page',
@@ -98,4 +99,17 @@ export class PizzeriaWebPageComponent implements OnInit {
     return this.form.get("id")!;
   }
 
+  public setLogin(login: MatSelectChange):void
+  {
+    console.log(login.value)
+    let item = this.customerAccounts.find(x => x.id == login.value)
+    console.log(item);
+    if (item != undefined)  {
+      this.loginControl.setValue(item.login);
+      return
+    }
+    this.loginControl.setValue("");
+    
+    
+  }
 }

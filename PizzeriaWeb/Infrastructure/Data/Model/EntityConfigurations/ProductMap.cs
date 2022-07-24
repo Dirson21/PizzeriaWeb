@@ -11,8 +11,11 @@ namespace PizzeriaWeb.Infrastructure.Data.Model.EntityConfigurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
+           
+
 
             builder.Property(x => x.Name);
+            builder.HasIndex(x => x.Name).IsUnique();
             builder.Property(x => x.Price);
 
      

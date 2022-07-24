@@ -10,3 +10,7 @@ mat-nav-list.list-horizontal {
     flex-direction: row;
     width: 20%;
    }
+
+   mat-list-item {
+    margin-bottom: 20px;
+}

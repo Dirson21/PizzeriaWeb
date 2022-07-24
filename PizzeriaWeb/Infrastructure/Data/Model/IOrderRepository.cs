@@ -16,7 +16,5 @@ namespace PizzeriaWeb.Infrastructure.Data.Model
 
         void Delete(Order order);
 
-
-
     }
 }

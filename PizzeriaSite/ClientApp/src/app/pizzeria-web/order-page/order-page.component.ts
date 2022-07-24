@@ -4,6 +4,10 @@ import { AbstractControl, ControlConfig, FormControl, FormControlDirective, Form
 import { OrderSerive } from '../shared/order.service';
 import { keyframes } from '@angular/animations';
 import { ChangeDetectorRef,AfterContentChecked} from '@angular/core'
+import { CustomerAccountService } from '../shared/customer-account.service';
+import { ICustomerAccount } from '../shared/customer-account.interface';
+import { ProductService } from '../shared/product.service';
+import { IProduct } from '../shared/product.interface';
 
 @Component({
   selector: 'app-order-page',
@@ -18,8 +22,18 @@ export class OrderPageComponent implements OnInit {
 
   public productControls!:  Map<string,  FormControl>
 
-  constructor(private orderService: OrderSerive, private cdRef: ChangeDetectorRef) {
+  public productControlsKeys!: string[]
+
+  public customerAccounts!: ICustomerAccount[]
+
+  public products! : IProduct[]
+
+
+  constructor(private orderService: OrderSerive, private customerAccountService: CustomerAccountService, private productService: ProductService) {
     this.GetOrders();
+
+    this.getPorducts();
+    this.getCustomerAccounts()
 
    }
 
@@ -29,10 +43,14 @@ export class OrderPageComponent implements OnInit {
 
     this.form = new FormGroup({
       customerId: new FormControl(null, [Validators.required]),
-      product1: new FormControl(null, [Validators.required])
+      product1: this.productControls.get("product1")!
     })
 
-    this.cdRef.detectChanges();
+    this.productControlsKeys = Array.from(this.productControls.keys());
+    console.log(this.productControlsKeys)
+
+
+   
   }
 
   public GetOrders() {
@@ -54,6 +72,7 @@ export class OrderPageComponent implements OnInit {
       return
     }
 
+    
     let order: IOrder = {
       id: 0,
       customerId: this.customerIdCOntrol.value,
@@ -61,6 +80,8 @@ export class OrderPageComponent implements OnInit {
       customerAccountDto: null,
       orderProductsDto: this.getProductOrder()
     };
+    console.log(order)
+
 
     this.orderService.addOrder(order).subscribe(()=> {
       this.GetOrders()
@@ -75,6 +96,7 @@ export class OrderPageComponent implements OnInit {
     let nameControl = `product${this.productControls.size + 1}`;
     this.productControls.set(nameControl, new FormControl(null, [Validators.required]));
     this.form.addControl(nameControl, this.productControls.get(nameControl));
+    this.productControlsKeys = Array.from(this.productControls.keys());
   }
 
   get customerIdCOntrol(): AbstractControl {
@@ -96,6 +118,19 @@ export class OrderPageComponent implements OnInit {
 
     return products;
   }
+
+
+  getCustomerAccounts() {
+    this.customerAccountService.getCustomerAccounts().subscribe((s)=> {
+      this.customerAccounts = Object.assign([], s);
+    });
+  }
+
+  getPorducts() {
+    this.productService.getProducts().subscribe((s)=> {
+      this.products = Object.assign([], s);
+  });
+}
 
 
 }

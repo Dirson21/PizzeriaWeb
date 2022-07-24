@@ -16,7 +16,7 @@ export class CustomerAccountTableComponent implements OnInit {
   constructor() { }
 
 
-  displayedColumns: string[] = ['id', 'login', 'password', 'balance', 'delete'];
+  displayedColumns: string[] = ['login', 'password', 'balance', 'delete'];
 
   public deleteClicked(item:ICustomerAccount)
   {

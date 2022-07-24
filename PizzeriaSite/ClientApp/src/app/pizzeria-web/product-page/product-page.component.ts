@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from '../shared/product.interface';
 import { ProductService } from '../shared/product.service';
 import { fromEventPattern } from 'rxjs';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-product-page',
@@ -80,6 +81,18 @@ export class ProductPageComponent implements OnInit {
   }
   get priceControl(): AbstractControl {
     return this.form.get("price")!;
+  }
+
+  public setName(value:MatSelectChange)
+  {
+    
+    let item = this.products.find(x => x.id == value.value)
+    console.log(item);
+    if (item != undefined)  {
+      this.nameControl.setValue(item.name);
+      return
+    }
+    this.nameControl.setValue("");
   }
 
 }

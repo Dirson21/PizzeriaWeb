@@ -4,7 +4,7 @@ import { IProduct } from "./product.interface";
 export interface IOrder{
     id: number,
     customerId: number,
-    timeOrder: Date
+    timeOrder: Date,
     customerAccountDto: ICustomerAccount|null,
     orderProductsDto: IOrderProduct[]
     

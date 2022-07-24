@@ -13,6 +13,8 @@ namespace PizzeriaWeb.Infrastructure.Data.Model
 
         public int Create(Product product)
         {
+            
+
             int id = _dbContext.product.Add(product).Entity.Id;
             
             return id;
@@ -42,7 +44,7 @@ namespace PizzeriaWeb.Infrastructure.Data.Model
 
         public int Update(Product product)
         {
-            return _dbContext.product.Update(product).Entity.Id;
+           return _dbContext.product.Update(product).Entity.Id;
         }
     }
 }

@@ -78,7 +78,7 @@ namespace PizzeriaWeb.Controllers
 
         [HttpPut]
         [Route("{productId}")]
-        public IActionResult UpdateCustomerAccount([FromBody] ProductDto productDto)
+        public IActionResult UpdateProduct([FromBody] ProductDto productDto)
         {
             try
             {

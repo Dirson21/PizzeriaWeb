@@ -1,6 +1,6 @@
 
 
-.mat-column-id
+/* .mat-column-id
 {
     width: 32px;
     border-right: 1px solid currentColor;
@@ -13,4 +13,21 @@
     border-right: 1px solid currentColor;
    
   }
+ */
+
+ .mat-cell, .mat-header-cell {
+    min-width: 100px;
+    border-right: 1px solid currentColor;
+    text-align: center;
+    padding-right: 24px;
+    border-bottom: 1px solid currentColor;
+}
+
+.mat-header-cell {
+    border-top: 1px solid currentColor;
+}
+
+.mat-column-login {
+    border-left: 1px solid currentColor;
+}
 

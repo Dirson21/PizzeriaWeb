@@ -18,7 +18,7 @@ export class ProductTableComponent implements OnInit {
   @Output() public delete: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 
 
-  displayedColumns: string[] = ['id', 'name', 'price', "delete"];
+  displayedColumns: string[] = ['name', 'price', "delete"];
 
   public deleteClicked(item:IProduct)
   {

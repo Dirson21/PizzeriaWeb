@@ -21,9 +21,6 @@ namespace PizzeriaWeb.Infrastructure.Data.Model
             {
                 throw new ArgumentNullException($"Пользователя с Id={order.CustomerId} не существует");
             }
-            
-            //order.CustomerAccount = customerAccount;
-
 
             return _dbContext.order.Add(order).Entity.Id;
         }
@@ -53,12 +50,7 @@ namespace PizzeriaWeb.Infrastructure.Data.Model
 
         public int Update(Order order)
         {
-            int id = _dbContext.order.Update(order).Entity.Id;
-   
-            
-
             return _dbContext.Update(order).Entity.Id;
-
         }
     }
 }
