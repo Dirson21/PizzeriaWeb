@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PizzeriaWeb.Domain;
 
+
 namespace PizzeriaWeb.Infrastructure.Data.Model
 {
     public class OrderRepository : IOrderRepository
@@ -13,15 +14,51 @@ namespace PizzeriaWeb.Infrastructure.Data.Model
             _dbContext = dbContext;
         }
 
-        public void GetAll()
+        public int Create(Order order)
         {
-         /*   var result = _dbContext.customerAccount.Join(_dbContext.order, customer => customer.Id, order => order.CustomerId, (customer, order) => new { customer, order })
-                .Join(_dbContext.orderProduct, combinedEntry => combinedEntry.order.Id, orderProduct => orderProduct.OrderId, (combinedEntry, orderPruct) => new { combinedEntry, orderPruct })
-                .Join(_dbContext.product, combainedEntry => combainedEntry.combinedEntry)*/
-                
-                
-    
-            throw new NotImplementedException();
+            CustomerAccount customerAccount = _dbContext.customerAccount.SingleOrDefault(x => x.Id == order.CustomerId);
+            if (customerAccount == null)
+            {
+                throw new ArgumentNullException($"Пользователя с Id={order.CustomerId} не существует");
+            }
+            
+            //order.CustomerAccount = customerAccount;
+
+
+            return _dbContext.order.Add(order).Entity.Id;
+        }
+
+        public void Delete(Order order)
+        {
+            _dbContext.Remove(order);
+        }
+
+        public List<Order> GetAll()
+        {
+            var result = _dbContext.order.Include(x => x.CustomerAccount).Include(x => x.OrderProducts).ThenInclude(x => x.Product).ToList();
+
+            return result;
+   
+        }
+
+        public List<Order> GetByCustomerId(int customerId)
+        {
+            return _dbContext.order.Include(x => x.CustomerAccount).Include(x => x.OrderProducts).ThenInclude(x => x.Product).Where(x => x.CustomerId == customerId).ToList();
+        }
+
+        public Order GetById(int id)
+        {
+            return _dbContext.order.Include(x => x.CustomerAccount).Include(x => x.OrderProducts).ThenInclude(x => x.Product).SingleOrDefault(x => x.Id == id);
+        }
+
+        public int Update(Order order)
+        {
+            int id = _dbContext.order.Update(order).Entity.Id;
+   
+            
+
+            return _dbContext.Update(order).Entity.Id;
+
         }
     }
 }

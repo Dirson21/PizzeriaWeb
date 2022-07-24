@@ -21,6 +21,9 @@ import { ProductService } from './shared/product.service';
 import { ProductTableComponent } from './product-table/product-table.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ProductPageComponent } from './product-page/product-page.component';
+import { OrderTableComponent } from './order-table/order-table.component';
+import { OrderPageComponent } from './order-page/order-page.component';
+import { OrderSerive } from './shared/order.service';
 
 
 @NgModule({
@@ -28,7 +31,9 @@ import { ProductPageComponent } from './product-page/product-page.component';
     PizzeriaWebPageComponent,
     CustomerAccountTableComponent,
     ProductTableComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    OrderTableComponent,
+    OrderPageComponent
   ],
   imports: [
     MatToolbarModule,
@@ -50,7 +55,8 @@ import { ProductPageComponent } from './product-page/product-page.component';
   ],
   providers: [
     CustomerAccountService,
-    ProductService
+    ProductService,
+    OrderSerive
   ]
 })
 export class PizzeriaWebModule { }

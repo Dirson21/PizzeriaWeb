@@ -8,12 +8,17 @@ namespace PizzeriaWeb.Infrastructure.Data.Model.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<OrderProduct> builder)
         {
-            builder.HasKey(x => x.ProductId);
-            builder.Property(x => x.OrderId);
-            builder.HasOne<Order>().WithMany(x=> x.OrderProducts).OnDelete(DeleteBehavior.Cascade).HasForeignKey(x=> x.OrderId);
+           
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+  
 
+            builder.Property(x => x.OrderId);
             builder.Property(x => x.ProductId);
-            builder.HasOne<Product>().WithMany(x => x.Products).OnDelete(DeleteBehavior.Cascade).HasForeignKey(x => x.ProductId);
+
+            builder.HasOne<Product>(x => x.Product).WithMany(x => x.OrderProducts).OnDelete(DeleteBehavior.Cascade).HasForeignKey(x => x.ProductId);
+            builder.HasOne<Order>(x => x.Order).WithMany(x => x.OrderProducts).OnDelete(DeleteBehavior.Cascade).HasForeignKey(x => x.OrderId);
+           
         }
     }
 

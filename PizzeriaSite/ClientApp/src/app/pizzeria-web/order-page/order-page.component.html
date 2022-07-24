@@ -1,0 +1,38 @@
+<mat-card>
+    <mat-nav-list  class="list-horizontal">
+        <mat-list-item class="nav-item"><a routerLink=""><h3>Customer</h3></a></mat-list-item>
+        <mat-list-item class="nav-item"><a routerLink="/product"><h3>Product</h3></a></mat-list-item>
+        <mat-list-item class="nav-item"><a routerLink="/order"><h3>Order</h3></a></mat-list-item>
+        
+    </mat-nav-list>
+
+    <mat-card-content>
+   
+    <h3>Заказы</h3>
+    <app-order-table [dataSource]="orders" (delete)="deleteOrder($event)"></app-order-table>
+
+    </mat-card-content> 
+
+    <mat-card-actions>
+        <form [formGroup]="form">
+            <mat-list>
+                <mat-list-item>
+                <mat-form-field  class="example-form-field" appearance="fill">
+                    <input formControlName="customerId"  matInput type="number" min="0" placeholder="CustomerId">
+                </mat-form-field>
+                </mat-list-item>
+
+            <mat-list-item *ngFor="let control of productControls.keys()">
+                <mat-form-field   class="example-form-field" appearance="fill">
+                    <input formControlName="{{control}}" matInput type="number" placeholder="ProductId-{{control}}"> 
+                </mat-form-field>
+            </mat-list-item>
+            </mat-list>
+        </form>
+        <button mat-flat-button color="primary"(click)="newProduct()">Новый продукт</button>
+        <button mat-flat-button color="primary" (click)="addOrder()">Добавить заказ</button>
+        
+    </mat-card-actions>
+    
+
+</mat-card>

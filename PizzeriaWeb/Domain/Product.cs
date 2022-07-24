@@ -7,8 +7,7 @@ namespace PizzeriaWeb.Domain
         public string Name { get; set; }
         public decimal Price { get; set; }
 
-        public List<OrderProduct> Products => _products;
-        private List<OrderProduct> _products = new List<OrderProduct>();
+        public List<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
 
         public Product(int id, string name, decimal price)
         {

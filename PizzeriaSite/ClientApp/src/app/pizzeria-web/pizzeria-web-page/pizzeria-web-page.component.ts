@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ICustomerAccount } from '../shared/customer-account.interface';
 import { CustomerAccountService } from '../shared/customer-account.service';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IProduct } from '../shared/product.interface';
 import { ProductService } from '../shared/product.service';
-import { fromEventPattern } from 'rxjs';
 
 @Component({
   selector: 'app-pizzeria-web-page',

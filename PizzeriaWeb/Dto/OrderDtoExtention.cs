@@ -6,11 +6,14 @@ namespace PizzeriaWeb.Dto
     {
         public static Order ConvertToOrder(this OrderDto orderDto)
         {
+            
             return new Order
             {
                 Id = orderDto.Id,
                 CustomerId = orderDto.CustomerId,
-                TimeOrder = orderDto.TimeOrder
+                TimeOrder = orderDto.TimeOrder,
+                OrderProducts = orderDto.OrderProductsDto?.ConvertAll(x => x.ConvertToOrderProduct()),
+                CustomerAccount = orderDto.CustomerAccountDto?.ConvertToCustomerAccount()
             };
 
         }
@@ -20,7 +23,9 @@ namespace PizzeriaWeb.Dto
             {
                 Id = order.Id,
                 CustomerId = order.CustomerId,
-                TimeOrder = order.TimeOrder
+                TimeOrder = order.TimeOrder,
+                OrderProductsDto = order.OrderProducts.ConvertAll(x => x.ConvertToOrderProductDto()),
+                CustomerAccountDto = order.CustomerAccount?.ConvertToCustomerAccountDto()
             };
         }
     }

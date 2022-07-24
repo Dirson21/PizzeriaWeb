@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PizzeriaWebPageComponent } from './pizzeria-web-page/pizzeria-web-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductPageComponent } from './product-page/product-page.component';
+import { OrderPageComponent } from './order-page/order-page.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path:"product",
     component: ProductPageComponent
+  },
+  {
+    path:"order",
+    component: OrderPageComponent
   }
 ]
 

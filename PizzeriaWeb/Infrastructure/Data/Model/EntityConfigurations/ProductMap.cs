@@ -15,7 +15,9 @@ namespace PizzeriaWeb.Infrastructure.Data.Model.EntityConfigurations
             builder.Property(x => x.Name);
             builder.Property(x => x.Price);
 
-          
+     
+
+           
         }
     }
 }

@@ -10,6 +10,7 @@ namespace PizzeriaWeb.Dto
             {
                 OrderId = orderProductDto.OrderId,
                 ProductId = orderProductDto.ProductId,
+                Product = orderProductDto.Product?.ConvertToProduct()
             };
         }
         public static OrderProductDto ConvertToOrderProductDto(this OrderProduct orderProduct)
@@ -17,7 +18,8 @@ namespace PizzeriaWeb.Dto
             return new OrderProductDto
             {
                 OrderId = orderProduct.OrderId,
-                ProductId = orderProduct.ProductId
+                ProductId = orderProduct.ProductId,
+                Product = orderProduct.Product?.ConvertToProducttDto()
             };
             
         }
